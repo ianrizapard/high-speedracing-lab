@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>极速赛车 · 稳定入口与页面说明</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(145deg, #fcdec0 0%, #f8b28c 50%, #f2957a 100%);
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.5rem 3rem;
+      line-height: 1.6;
+      color: #2d2a27;
+    }
+
+    .page-wrapper {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    /* 白色卡片基础 */
+    .card {
+      background: #fffffffa;
+      backdrop-filter: blur(2px);
+      border-radius: 32px;
+      box-shadow: 0 12px 28px rgba(162, 85, 35, 0.18), 0 4px 12px rgba(0,0,0,0.04);
+      padding: 2.2rem 2.4rem;
+      transition: box-shadow 0.25s, transform 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 18px 36px rgba(162, 85, 35, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* hero 区域 */
+    .hero {
+      margin-bottom: 3rem;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #a14e2c, #cc6a3e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 640px;
+      margin: 0 auto 1.6rem;
+      color: #3a2e28;
+    }
+
+    .hero .tagline {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(4px);
+      padding: 0.5rem 1.8rem;
+      border-radius: 60px;
+      font-size: 0.95rem;
+      border: 1px solid rgba(255, 215, 190, 0.6);
+      color: #4e382b;
+    }
+
+    /* 优势区 + 说明区 — 两栏 */
+    .two-col {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 2.8rem;
+    }
+
+    .col {
+      flex: 1 1 300px;
+    }
+
+    .col .card {
+      height: 100%;
+    }
+
+    .card h2 {
+      font-size: 1.6rem;
+      font-weight: 500;
+      border-left: 5px solid #d87a4e;
+      padding-left: 1rem;
+      margin-bottom: 1.2rem;
+      color: #3d2b20;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .card ul li {
+      padding: 0.5rem 0 0.5rem 1.8rem;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23d87a4e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>') left center no-repeat;
+      background-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .card p {
+      margin-bottom: 1rem;
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 说明区里的链接感 */
+    .link-button {
+      display: inline-block;
+      background: #d87a4e;
+      color: #fff;
+      font-weight: 500;
+      padding: 0.6rem 2rem;
+      border-radius: 60px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 4px 10px rgba(190, 90, 40, 0.25);
+      margin-top: 0.8rem;
+    }
+
+    .link-button:hover {
+      background: #c0683c;
+      transform: scale(1.02);
+    }
+
+    /* FAQ 摘要 */
+    .faq-section {
+      margin-bottom: 2.8rem;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .faq-item {
+      background: #fffffffa;
+      border-radius: 24px;
+      padding: 1.5rem 1.8rem;
+      box-shadow: 0 6px 16px rgba(100, 50, 20, 0.08);
+      border: 1px solid #f8dac8;
+    }
+
+    .faq-item h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #4e3324;
+      margin-bottom: 0.5rem;
+    }
+
+    .faq-item p {
+      color: #4f3e35;
+      font-size: 0.95rem;
+    }
+
+    /* 底部链接区域 */
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.8rem 2rem;
+      margin-top: 0.8rem;
+    }
+
+    .footer-links .brand {
+      font-weight: 500;
+      color: #4f3322;
+    }
+
+    .footer-links a {
+      color: #8f5133;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+      font-weight: 500;
+    }
+
+    .footer-links a:hover {
+      border-bottom-color: #8f5133;
+    }
+
+    .footer-links .inline-link {
+      background: #fff3eb;
+      padding: 0.3rem 1.2rem;
+      border-radius: 60px;
+      border: 1px solid #ecc1aa;
+      transition: background 0.2s;
+    }
+
+    .footer-links .inline-link:hover {
+      background: #f5ddd0;
+      border-color: #d29474;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #dba585, transparent);
+      margin: 0.5rem 0 1.2rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 640px) {
+      body { padding: 1.2rem 1rem 2rem; }
+      .card { padding: 1.6rem 1.4rem; }
+      .hero { padding: 2rem 1rem; }
+      .faq-item { padding: 1.2rem; }
+      .footer-links { flex-direction: column; gap: 0.8rem; align-items: flex-start; }
+    }
+
+    /* 小装饰 */
+    .subtle-meta {
+      font-size: 0.8rem;
+      color: #876a58;
+      letter-spacing: 0.3px;
+      margin-top: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- Hero 区 -->
+  <div class="hero card">
+    <h1>极速赛车 · 平稳驶入</h1>
+    <p>
+      一个围绕赛车信息与动态的稳定页面，不预设速度之外的噪音。这里只有对驾驶本质的叙述，以及一条通往<a href="https://high-speedracing.com" style="color:#b45b32; font-weight:600; text-decoration:underline; text-underline-offset:3px;">极速赛车</a>的安静入口。
+    </p>
+    <div class="tagline">从引擎声到沥青 — 页面即起点</div>
+  </div>
+
+  <!-- 两列：优势 + 说明 -->
+  <div class="two-col">
+    <div class="col">
+      <div class="card">
+        <h2>稳定入口</h2>
+        <ul>
+          <li>页面结构清晰，无过度动效干扰</li>
+          <li>每个区块承载单一信息，降低认知负荷</li>
+          <li>链接前置，不诱导、不堆叠</li>
+          <li>配色取自暖阳与赛道标线</li>
+          <li>适配不同屏幕，阅读节奏自控</li>
+        </ul>
+        <div class="subtle-meta">· 信息 · 克制 · 一致</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <h2>页面说明</h2>
+        <p>
+          本页作为介绍性落地页，不模拟赛车游戏，也不提供实时数据。它更像一张折页：告诉你前方是什么，以及如何平稳抵达。
+        </p>
+        <p>
+          网站 <a href="https://high-speedracing.com" style="color:#b45b32; font-weight:500;">极速赛车</a> 本身承载更完整的内容生态，这里只做安静引导。
+        </p>
+        <a href="https://high-speedracing.com" class="link-button">极速赛车</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-section">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.2rem; flex-wrap: wrap;">
+      <h2 style="font-weight: 500; font-size: 1.4rem; color: #3f2b20;">常见问题摘要</h2>
+      <span style="font-size: 0.85rem; color: #795d4b;">基于真实询问频率</span>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3>这个页面是官网吗？</h3>
+        <p>不是。它是一个独立的介绍页，用于说明和链接到 <a href="https://high-speedracing.com" style="color:#b45b32;">极速赛车</a> 网站本身。</p>
+      </div>
+      <div class="faq-item">
+        <h3>为什么强调“稳定入口”？</h3>
+        <p>因为部分用户更偏好轻量、克制的信息页面，在了解全貌后再决定是否深入。</p>
+      </div>
+      <div class="faq-item">
+        <h3>页面会频繁更新吗？</h3>
+        <p>内容结构基本固定，仅部分文本可能随网站方向微调，保持长期可用。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部链接 按方向融入句子中 -->
+  <div class="card footer-links">
+    <span class="brand">极速赛车 · 页面说明</span>
+    <span>
+      如需直接进入主站，可随时使用链接 <a href="https://high-speedracing.com" class="inline-link">极速赛车</a>
+      <span style="margin:0 0.4rem; color:#b18064;">·</span>
+      <a href="https://high-speedracing.com" style="border-bottom:1px dashed #b18064;">极速赛车</a>
+    </span>
+  </div>
+
+  <!-- 极简分割 + 版本提示（不出现在链接中） -->
+  <hr>
+  <div style="text-align: center; font-size: 0.75rem; color: #6c5040; letter-spacing: 0.2px; margin-top: 0.8rem;">
+    落地页 · 暖色渐变 · 内容卡片 · 入站稳定
+  </div>
+
+</div>
+</body>
+</html>
